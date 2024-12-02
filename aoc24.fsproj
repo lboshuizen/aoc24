@@ -9,8 +9,10 @@
         <Compile Include="Prelude.fs" />
         <Compile Include="Template.fs" />
         <Compile Include="Day01.fs" />
+        <Compile Include="Day02.fs" />
         <Compile Include="Program.fs"/>
         <Content Include="inputs\day1.txt" />
+        <Content Include="inputs\day2.txt" />
     </ItemGroup>
 
     <ItemGroup>
