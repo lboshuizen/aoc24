@@ -14,11 +14,11 @@ let count = Seq.filter ((=) true) >> Seq.length
 let part1 = Seq.map isSafe >> count
 
 let damped xs =
-       let remove xs = seq {for i in 1..(Seq.length xs) -> Seq.removeAt (i-1) xs}
-       
-       if isSafe xs then true
-       else
-        xs |> remove |> Seq.exists isSafe
+    let remove xs = seq {for i in 1..(Seq.length xs) -> Seq.removeAt (i-1) xs}
+    
+    if isSafe xs then true
+    else
+    xs |> remove |> Seq.exists isSafe
 
 let part2 = Seq.map damped >> count
 
