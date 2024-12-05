@@ -17,19 +17,19 @@ let compare (m:Map<int,Set<int>>) a b =
 let sort m = Seq.sortWith (compare m)
 let mid xs = xs |> Seq.length |> fun l -> Seq.item (l/2) xs 
 
-let correct r xs =
-    if xs |> sort r |> Seq.zip xs |> Seq.forall (uncurry (=)) then Some (mid xs)
-    else None
+let part1 (r,u) =
+    let correct xs =
+        if xs |> sort r |> Seq.zip xs |> Seq.forall (uncurry (=)) then mid xs
+        else 0
+        
+    u |> Seq.map correct |> Seq.sum
 
-let queue f r = Seq.map (f r) >> Seq.choose id >> Seq.sum
-
-let part1 (r,u) = u |> queue correct r
-
-let incorrect r xs =
-     let s = xs |> sort r 
-     if s |> Seq.zip xs |> Seq.exists (uncurry (<>)) then Some (mid s)
-     else None
-
-let part2 (r,u) = u |> queue incorrect r
+let part2 (r,u) =
+    let incorrect xs =
+         let s = xs |> sort r 
+         if s |> Seq.zip xs |> Seq.exists (uncurry (<>)) then mid s
+         else 0
+    
+    u |> Seq.map incorrect |> Seq.sum
 
 let Solve: string seq -> int*int = parse >> both part1 part2
