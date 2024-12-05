@@ -26,8 +26,9 @@ let splitWhen (pred:'a->bool) =
                            | _ -> (c::r,f)
                            
     foldr splitter ([],[]) >> fun (r,f) -> r::f
-    
-let splitOnEmpty = splitWhen ((=)"")
+
+let splitOnEmpty : string seq -> string list list =
+    Seq.toList >> splitWhen ((=)"")
 
 let parseRegex regex map s =  Regex.Match(s,regex) |> fun m -> m.Groups
                               |> Seq.skip 1 // ignore first group
