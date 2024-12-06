@@ -2,8 +2,8 @@ module DayXX
 
 let parse = id
 
-let part1 = id
+let part1 _ = 0
 
-let part2 _ = None
+let part2 _ = 0
 
-let Solve (xs:string seq) = xs |> parse |> both part1 part2
+let Solve: string seq -> int*int = parse >> both part1 part2
