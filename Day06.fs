@@ -12,13 +12,14 @@ let ahead (x,y)   d=
 let patrol m =
             
     let rec go m d p v =
-        let turn = ((d+1) % 4)
+        let turn = (d+1) % 4
+        let track = Set.add (d,p) v
         if Set.contains (d,p) v then Seq.empty
         else 
             let n = ahead p d
             match Map.tryFind n m with
-            | Some '.' | Some '^'  -> go m d n (Set.add (d,p) v)
-            | Some _ -> go m turn p v
+            | Some '#' -> go m turn p v
+            | Some _  -> go m d n track
             | None -> v |> Set.map snd |> Set.toSeq
 
     match Map.tryFindKey (fun _ v -> v = '^') m with
