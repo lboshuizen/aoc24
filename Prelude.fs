@@ -5,7 +5,7 @@ open System
 open System.Collections.Generic
 open System.Text.RegularExpressions
 
-let plus1 a = a+1
+let plus1  = (+) 1
 
 let inline (++) (a,b) (a',b') = (a+a',b+b')
 
