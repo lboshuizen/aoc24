@@ -103,6 +103,16 @@ let rec combinations = function
                        | [] -> []
                        | x::xs -> List.map (fun b -> (x,b)) xs @ combinations xs
 
+let rec distribute e =
+  function
+  | [] -> [[e]]
+  | x::xs' as xs -> (e::xs)::[for xs in distribute e xs' -> x::xs]
+
+let rec permute =
+  function
+  | [] -> [[]]
+  | e::xs -> List.collect (distribute e) (permute xs)
+
 module String =
     let fromChars : (seq<char> -> string) = String.Concat
     let replace (what:string seq) (with':string) (s:string) = Seq.fold (fun (s':string) c -> s'.Replace(c,with')) s what
