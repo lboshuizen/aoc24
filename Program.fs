@@ -3,13 +3,13 @@ open System.IO
 open FSharpPlus.Data
 open FSharpPlus.GenericBuilders
 
-let readInput (d:int)  =
-    let p = Path.Combine(__SOURCE_DIRECTORY__,"inputs",$"day{d}.txt")
+let readInput (d: int) =
+    let p = Path.Combine(__SOURCE_DIRECTORY__, "inputs", $"day{d}.txt")
     File.ReadLines(p) |> List.ofSeq
 
-let go f xs = monad { return f xs }        
+let go f xs = monad { return f xs }
 
-readInput 7
-|> fun xs -> State.run (go Day07.Solve xs) (Stopwatch.StartNew())
-|> fun (r,s) -> (s.ElapsedMilliseconds,r)
+readInput 8
+|> fun xs -> State.run (go Day08.Solve xs) (Stopwatch.StartNew())
+|> fun (r, s) -> (s.ElapsedMilliseconds, r)
 ||> printf "time: %dms\nresult:\n %A"
