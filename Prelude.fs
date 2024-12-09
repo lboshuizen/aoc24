@@ -118,6 +118,11 @@ let tap a =
     printfn $"%A{a}"
     a
 
+let tapf f a =
+    f a
+    a
+
+
 let rec iterate f x =
     seq {
         yield x
@@ -159,6 +164,14 @@ module String =
 
     let replace (what: string seq) (with': string) (s: string) =
         Seq.fold (fun (s': string) c -> s'.Replace(c, with')) s what
+
+module List =
+
+    let replaceAt i v = List.removeAt i >> List.insertAt i v
+
+    let replace pred a xs =
+        let ix = xs |> List.findIndex pred
+        xs |> replaceAt ix a
 
 module Map =
 
