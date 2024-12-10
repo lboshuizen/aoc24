@@ -167,11 +167,9 @@ module String =
 
 module List =
 
-    let replaceAt i v = List.removeAt i >> List.insertAt i v
-
     let replace pred a xs =
         let ix = xs |> List.findIndex pred
-        xs |> replaceAt ix a
+        xs |> List.updateAt ix a
 
 module Map =
 
