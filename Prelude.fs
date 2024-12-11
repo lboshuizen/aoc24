@@ -106,6 +106,9 @@ module Seq =
 
     let Tuple = Tuple2
 
+let isEven n = n % 2 = 0
+let isOdd = isEven >> not
+
 let rec gcd (a: int64) (b: int64) =
     if b = 0 then
         abs a
@@ -158,6 +161,22 @@ let rec permute =
     function
     | [] -> [ [] ]
     | e :: xs -> List.collect (distribute e) (permute xs)
+
+let memo f =
+    let cache = Dictionary<_, _>()
+
+    fun c ->
+        match cache.TryGetValue c with
+        | true, v -> v
+        | _ ->
+            let value = f c
+            cache.Add(c, value)
+            value
+
+let rec repeat f n a =
+    match n with
+    | 0 -> a
+    | _ -> repeat f (n - 1) (f a)
 
 module String =
     let fromChars: (seq<char> -> string) = String.Concat

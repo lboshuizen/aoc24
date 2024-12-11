@@ -22,11 +22,8 @@ let rec walk (m: Map<int * int, int>) p =
 let trailhead f m p = walk m p |> f |> List.length
 
 let part1 (m, xs) =
-    xs
-    |> Seq.map (trailhead List.distinct m)
-    |> Seq.sum
+    xs |> Seq.sumBy (trailhead List.distinct m)
 
-let part2 (m, xs) =
-    xs |> Seq.map (trailhead id m) |> Seq.sum
+let part2 (m, xs) = xs |> Seq.sumBy (trailhead id m)
 
 let Solve: string seq -> int * int = parse >> both part1 part2
