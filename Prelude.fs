@@ -23,6 +23,8 @@ let foldr f = flip (List.foldBack f) // Who(??) decided to give foldBack that cr
 let inline splitOn (c: char) (s: string) = s.Split c
 let splitOnAny (del: #seq<char>) (s: string) = Seq.toArray del |> s.Split
 
+let remove (c: char) (s: string) = s.Replace(string c, "")
+
 let splitWhen (pred: 'a -> bool) =
     let splitter c (r, f) =
         match pred c with
