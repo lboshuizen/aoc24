@@ -194,6 +194,8 @@ module List =
         let ix = xs |> List.findIndex pred
         xs |> List.updateAt ix a
 
+    let heads<'a>: 'a list -> 'a list = List.rev >> List.tail >> List.rev
+
 module Map =
 
     let private set f =
