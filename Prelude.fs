@@ -108,6 +108,8 @@ module Seq =
 
     let Tuple = Tuple2
 
+    let product: int seq -> int = Seq.fold (fun a c -> a * c) 1
+
 let isEven n = n % 2 = 0
 let isOdd = isEven >> not
 
