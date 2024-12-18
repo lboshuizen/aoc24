@@ -5,12 +5,16 @@ open System
 open System.Collections.Generic
 open System.Text.RegularExpressions
 
+let inline flip f a b = f b a
+
 let plus1 = (+) 1
+let minus1 = flip (-) 1
 
 let inline (++) (a, b) (a', b') = (a + a', b + b')
 
 let inline both f g x = (f x, g x)
-let inline flip f a b = f b a
+
+let (<|>) = both
 
 let inline swap (a, b) = (b, a)
 

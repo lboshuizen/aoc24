@@ -4,6 +4,6 @@ let parse = id
 
 let part1 = id
 
-let part2 _ = None
+let part2 = Const 0
 
-let Solve: string seq -> 'a * option<int> = parse >> both part1 part2
+let Solve: string seq -> 'a * 'b = parse >> both part1 part2
