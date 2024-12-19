@@ -189,6 +189,8 @@ let rec repeat f n a =
 module String =
     let fromChars: (seq<char> -> string) = String.Concat
 
+    let remove c (s:string) = s.Replace(c,"")
+
     let replace (what: string seq) (with': string) (s: string) =
         Seq.fold (fun (s': string) c -> s'.Replace(c, with')) s what
 
