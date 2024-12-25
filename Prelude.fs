@@ -109,6 +109,7 @@ module Seq =
             | fst :: snd :: trd :: _ -> (fst, snd, trd)
             | _ -> failwith "oops"
 
+    let heads<'a>: 'a seq -> 'a seq = Seq.rev >> Seq.tail >> Seq.rev
 
     let Tuple = Tuple2
 
