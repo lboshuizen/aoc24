@@ -20,6 +20,8 @@ let inline swap (a, b) = (b, a)
 
 let inline isDigit c = Char.IsDigit c
 let inline a2i (c: char) = int c - int '0'
+let inline i2a (c: int) = c + int '0' |> char
+
 
 let foldl = Seq.fold
 let foldr f = flip (List.foldBack f) // Who(??) decided to give foldBack that crazy signature
