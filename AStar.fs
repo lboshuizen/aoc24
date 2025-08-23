@@ -65,7 +65,6 @@ let search<'a when 'a: comparison> start goal config : seq<'a> option =
                                 let newCameFrom = Map.add neighbour current cameFrom
                                 newOpenSet, newGScores, newFScores, newCameFrom)
                         (rest, gScores, fScores, cameFrom)
-
                 crawler (Set.add current closedSet) next
             | _ -> None
 

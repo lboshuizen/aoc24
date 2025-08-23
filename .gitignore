@@ -6,4 +6,13 @@ riderModule.iml
 /_ReSharper.Caches/
 .fake
 
+# Sensitive files that should NEVER be public
 inputs/
+sample*.txt
+problem.txt
+*_auth*.py
+*download*.py
+get_input.py
+requirements.txt
+demo_*.py
+.claude/

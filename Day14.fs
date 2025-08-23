@@ -33,6 +33,6 @@ let part1 =
     >> Seq.map Seq.length
     >> Seq.product
 
-let part2 _ = None
+let part2 _ = 0
 
-let Solve: string seq -> int * option<int> = parse >> both part1 part2
+let Solve: string seq -> int * 'a = parse >> both part1 part2
