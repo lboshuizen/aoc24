@@ -33,6 +33,24 @@ let part1 =
     >> Seq.map Seq.length
     >> Seq.product
 
-let part2 _ = 0
+let variance xs =
+    let positions = xs |> Seq.toArray
+    let n = float positions.Length
+    let avgX = positions |> Array.averageBy (fun (x, _) -> float x)
+    let avgY = positions |> Array.averageBy (fun (_, y) -> float y)
+    let varX = (positions |> Array.sumBy (fun (x, _) -> (float x - avgX) ** 2.0)) / n
+    let varY = (positions |> Array.sumBy (fun (_, y) -> (float y - avgY) ** 2.0)) / n
+    varX + varY
 
-let Solve: string seq -> int * 'a = parse >> both part1 part2
+let part2 robots =
+    let maxTime = 101 * 103
+
+    seq { 0 .. maxTime - 1 }
+    |> Seq.map (fun t ->
+        let positions = robots |> Seq.map (fun (p, v) -> move limit t (p, v))
+        t, variance positions)
+    |> Seq.minBy snd
+    |> fst
+    |> Some
+
+let Solve: string seq -> int * option<int> = parse >> both part1 part2
